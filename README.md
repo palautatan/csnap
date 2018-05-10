@@ -1,4 +1,7 @@
 # CSNAP - Compare Shared Node Age Plots
+```library(csnap)``` will give you access to the functions I'm using to compare inferred shared node ages between different analyses on the same dataset. As of now (2018-05-10 13:56:00 PST), you will not be able to use these functions unless you have the same exact files as I do, or close to it. I am currently working on a generalized adaptation of the ```csnap``` library to allow for multiple analyses to be compared. That is, instead of just "within study" comparisons, we will be doing "between studies" comparisons in future updates.
+
+## Tutorial
 This tutorial will describe Compare Shared Node Age Plots (CSNAPs). You can pronounce CSNAP like "sea-snap" or "kah-snap". Ask your neighbor how you think you should pronounce it. ;)
 
 You can download the ```RMarkdown``` <a href="https://github.com/palautatan/csnap/blob/master/examples/csnaps.Rmd">here</a>.
