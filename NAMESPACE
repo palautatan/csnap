@@ -3,5 +3,6 @@
 export(addComments)
 export(createAncestry)
 export(csnap)
+export(csnapPairs)
 export(csnapWhisker)
 export(matchNodes)
