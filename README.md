@@ -16,6 +16,7 @@ The last library we need is the ```csnap``` library. Download it via <a href="ht
 # * CSNAP LIBRARY
 library(csnap)
 ```
+<img src="examples/csnap.png">
 
 Now that we have the ```csnap``` library, I'll provide examples on how to use them and their differences.
 
