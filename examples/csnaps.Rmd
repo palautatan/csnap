@@ -32,7 +32,7 @@ When you run this function, you will see several ```is.na()``` warnings, and it 
 path_to_tre_files = "/Users/treehouse3/Dropbox/Effect_of_partitioning/step_3_forward/output/RevBayes/Rota_2011_moths"
 ```
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
 # CSNAP FUNCTION
 csnap(path_to_tre_files)
 ```
@@ -42,7 +42,7 @@ Each of the data points above represent a node that all of the trees inferred by
 ## 2. csnapWhisker()
 The ```csnapWhisker()``` function is the same as ```csnap()``` but adds whiskers to represent the 95% credible interval.
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
 # CSNAPWHISKER FUNCTION
 csnapWhisker(path_to_tre_files)
 ```
@@ -51,7 +51,7 @@ On the bottom of the plot, we see how many percent of the nodes are shared among
 
 ## 3. csnapPairs()
 Instead of plotting only the shared nodes amongst all analyses, ```csnapPairs()``` plots pairwise shared nodes.That is, there can be different amounts of data points in each plot.
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
 # CSNAPPAIRS FUNCTION
 csnapPairs(path_to_tre_files)
 ```
