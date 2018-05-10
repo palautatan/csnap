@@ -1,6 +1,8 @@
 # CSNAP - Compare Shared Node Age Plots
 This tutorial will describe Compare Shared Node Age Plots (CSNAPs). You can pronounce CSNAP like "sea-snap" or "kah-snap". Ask your neighbor how you think you should pronounce it. ;)
 
+You can download the ```RMarkdown``` <a href="https://github.com/palautatan/csnap/blob/master/examples/csnaps.Rmd">here</a>.
+
 ## Building off of library(ape)
 The library ```ape``` has a standard way of reading in a phylogenetic tree. The library ```phylotate``` extends upon that standard way. If you look at the class itself, it is a list consisting of edges, nodes, species, and more. I used the phylogenetic tree class in ```ape``` and parsed it to figure out which species fell under each node based on the numbering systems in ```ape```. The end product is a list relating species and node numbers.
 
