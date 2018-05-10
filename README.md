@@ -16,7 +16,6 @@ The last library we need is the ```csnap``` library. Download it via <a href="ht
 # * CSNAP LIBRARY
 library(csnap)
 ```
-<img src="examples/csnap.png">
 
 Now that we have the ```csnap``` library, I'll provide examples on how to use them and their differences.
 
@@ -25,14 +24,12 @@ The csnap function takes in a path to 5 differently partitioned analyses' ```.tr
 
 When you run this function, you will see several ```is.na()``` warnings, and it is safe to ignore them.
 
-```{r, echo=FALSE}
-path_to_tre_files = "/Users/treehouse3/Dropbox/Effect_of_partitioning/step_3_forward/output/RevBayes/Rota_2011_moths"
-```
-
 ```{r, warning=FALSE, message=FALSE}
 # CSNAP FUNCTION
 csnap(path_to_tre_files)
 ```
+
+<img src="examples/csnap.png">
 
 Each of the data points above represent a node that all of the trees inferred by each of the analyses shared. That is, there are the same amount of data points in each plot.
 
@@ -43,6 +40,7 @@ The ```csnapWhisker()``` function is the same as ```csnap()``` but adds whiskers
 # CSNAPWHISKER FUNCTION
 csnapWhisker(path_to_tre_files)
 ```
+<img src="examples/csnapWhisker.png">
 
 On the bottom of the plot, we see how many percent of the nodes are shared amongst all the different analyses. This is something I should also add to the output plot of ```csnap()```.
 
@@ -52,6 +50,7 @@ Instead of plotting only the shared nodes amongst all analyses, ```csnapPairs()`
 # CSNAPPAIRS FUNCTION
 csnapPairs(path_to_tre_files)
 ```
+<img src="examples/csnapPairs.png">
 
 ## The Identity Line
 The line $y=x$, the $1:1$ line, or the identity line is plotted in each of the subplots above. If the shared node ages were inferred to be the same, the points would line up on the identity. The subplots along the diagonal from the top left plot to the bottom right are the only ones that will follow the identity line because they are the same analysis plotted twice. All other plots will deviate from the identity line.
