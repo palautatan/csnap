@@ -5,7 +5,7 @@
 #' @keywords ancestry
 #' @export
 
-csnapPairs = function(tre_files_path) {
+csnapPairs = function(tre_files_path, study="") {
   # * READ IN FILES
   tre_files = list.files(tre_files_path, pattern=".tre$", full.names=TRUE)
   aic_anc   = createAncestry(tre_files[1])
@@ -124,28 +124,28 @@ csnapPairs = function(tre_files_path) {
   bg_col = c("gray100", "gray92", "gray84", "gray76", "gray68", "gray60", "gray52", "gray44", "gray36", "gray28", "gray20")
   bg_col = rev(bg_col)
   bg_col = bg_col[ranks]
-
-  par(mfrow=c(1,1))
-
-  plot.new()
-  box(lty=1, col="white")
-  abline(v=seq(0.1,0.9,0.1), col=bg_col[1], lwd=300)
-  abline(a=0, b=1, col="black", lty=3)
-  points(sat_hpd[(aic_sat_ix[,2]-num_tips),3], aic_hpd[(aic_sat_ix[,1]-num_tips),3], pch=19, col="gray22", xlab="", ylab="")
-  text(0.08, 1, paste0(as.character(rank_mat[1,1]*100),"%"))
-
-  plot.new()
-  box(lty=1, col="white")
-  abline(v=seq(0.1,0.9,0.1), col=bg_col[7], lwd=300)
-  abline(a=0, b=1, col="black", lty=3)
-  points(sat_hpd[(sat_uni_ix[,1]-num_tips),3], uni_hpd[(sat_uni_ix[,2]-num_tips),3], pch=19, col="gray22", xlab="", ylab="")
-
-  plot.new()
-  box(lty=1, col="white")
-  abline(v=seq(0.1,0.9,0.1), col=bg_col[6], lwd=300)
-  abline(a=0, b=1, col="black", lty=3)
-  points(sat_hpd[(sat_gen_ix[,1]-num_tips),3], gen_hpd[(sat_gen_ix[,2]-num_tips),3], pch=19, col="gray22", xlab="", ylab="")
-
+# 
+#   par(mfrow=c(1,1))
+# 
+#   plot.new()
+#   box(lty=1, col="white")
+#   abline(v=seq(0.1,0.9,0.1), col=bg_col[1], lwd=300)
+#   abline(a=0, b=1, col="black", lty=3)
+#   points(sat_hpd[(aic_sat_ix[,2]-num_tips),3], aic_hpd[(aic_sat_ix[,1]-num_tips),3], pch=19, col="gray22", xlab="", ylab="")
+#   text(0.08, 1, paste0(as.character(rank_mat[1,1]*100),"%"))
+# 
+#   plot.new()
+#   box(lty=1, col="white")
+#   abline(v=seq(0.1,0.9,0.1), col=bg_col[7], lwd=300)
+#   abline(a=0, b=1, col="black", lty=3)
+#   points(sat_hpd[(sat_uni_ix[,1]-num_tips),3], uni_hpd[(sat_uni_ix[,2]-num_tips),3], pch=19, col="gray22", xlab="", ylab="")
+# 
+#   plot.new()
+#   box(lty=1, col="white")
+#   abline(v=seq(0.1,0.9,0.1), col=bg_col[6], lwd=300)
+#   abline(a=0, b=1, col="black", lty=3)
+#   points(sat_hpd[(sat_gen_ix[,1]-num_tips),3], gen_hpd[(sat_gen_ix[,2]-num_tips),3], pch=19, col="gray22", xlab="", ylab="")
+# 
 
 
   # * PLOT ALL PAIRWISE COMBINATIONS
@@ -354,6 +354,6 @@ csnapPairs = function(tre_files_path) {
 
 
 
-  title(main="Divergence Time Comparisons for Shared Nodes\nUnder 5 Partitioning Schemes", sub="117", cex.main=1.5, outer=TRUE)
+  title(main="Divergence Time Comparisons for Shared Nodes\nUnder 5 Partitioning Schemes", sub=study, cex.main=1.5, outer=TRUE)
 
 }

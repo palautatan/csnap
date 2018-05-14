@@ -3,10 +3,12 @@
 #' Create a Compare Shared Node Ages Plot (CSNAP) between each pairwise sharing (AIC and BIC share these nodes / Gene and AIC share different nodes)
 #' @param tre_files_1 A vector of 5 .tre files in comparison order
 #' @param tre_files_2 Another vector of 5 .tre files in comparison order
+#' @param labels_1 A vector of strings of labels corresponding to tre_files_1 for matrix margins
+#' @param labels_2 A vector of strings of labels corresponding to tre_files_2 for matrix margins
 #' @keywords ancestry
 #' @export
 
-csnapMulti = function(tre_files_1, tre_files_2) {
+csnapMulti = function(tre_files_1, tre_files_2, labels_1, labels_2) {
   
   # * 1A. READ TRE_FILES_1
   anc_1a   = createAncestry(tre_files_1[1])
@@ -218,3 +220,210 @@ csnapMulti = function(tre_files_1, tre_files_2) {
   
   anc5b_hpd = matrix(as.numeric(unlist(strsplit(age_df[10,], ","))), ncol=2, byrow=TRUE)
   anc5b_hpd = cbind(anc5b_hpd, (anc5b_hpd[,1] + anc5b_hpd[,2])/2)
+  
+  
+  
+  # * 9. BG COLORS
+  bg_col = c("gray100", "gray92", "gray84", "gray76", "gray68", "gray60", "gray52", "gray44", "gray36", "gray28", "gray20")
+  bg_col = rev(bg_col)
+  bg_col = bg_col[ranks]
+  
+  
+  # * 10. PLOT ALL PAIRWISE COMBINATIONS
+  
+  par(mfrow=c(5,5), mar=c(0, 0, 0, 0), oma = c(4, 4, 4, 1))
+  
+  # * ROW 1 
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[1], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  points(anc1a_hpd[(anc1a_anc1b_ix[,1]-num_tips), 3], anc1b_hpd[(anc1a_anc1b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  mtext(labels_1[1], side=2, line=1, adj=0.5, cex=1)
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[2], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[1,1]*100),"%"))
+  points(anc1a_hpd[(anc1a_anc2b_ix[,1]-num_tips), 3], anc2b_hpd[(anc1a_anc2b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[3], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[5,1]*100),"%"))
+  points(anc1a_hpd[(anc1a_anc3b_ix[,1]-num_tips), 3], anc3b_hpd[(anc1a_anc3b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[4], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[6,1]*100),"%"))
+  points(anc1a_hpd[(anc1a_anc4b_ix[,1]-num_tips), 3], anc4b_hpd[(anc1a_anc4b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[5], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[7,1]*100),"%"))
+  points(anc1a_hpd[(anc1a_anc5b_ix[,1]-num_tips), 3], anc5b_hpd[(anc1a_anc5b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  
+  
+  # * ROW 2
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[6], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  points(anc2a_hpd[(anc2a_anc1b_ix[,1]-num_tips), 3], anc1b_hpd[(anc2a_anc1b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  mtext(labels_1[2], side=2, line=1, adj=0.5, cex=1)
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[7], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[1,1]*100),"%"))
+  points(anc2a_hpd[(anc2a_anc2b_ix[,1]-num_tips), 3], anc2b_hpd[(anc2a_anc2b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[8], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[5,1]*100),"%"))
+  points(anc2a_hpd[(anc2a_anc3b_ix[,1]-num_tips), 3], anc3b_hpd[(anc2a_anc3b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[9], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[6,1]*100),"%"))
+  points(anc2a_hpd[(anc2a_anc4b_ix[,1]-num_tips), 3], anc4b_hpd[(anc2a_anc4b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[10], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[7,1]*100),"%"))
+  points(anc2a_hpd[(anc2a_anc5b_ix[,1]-num_tips), 3], anc5b_hpd[(anc2a_anc5b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  
+  
+  # * BIC
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[11], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  points(anc3a_hpd[(anc3a_anc1b_ix[,1]-num_tips), 3], anc1b_hpd[(anc3a_anc1b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  mtext(labels_1[3], side=2, line=1, adj=0.5, cex=1)
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[12], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[1,1]*100),"%"))
+  points(anc3a_hpd[(anc3a_anc2b_ix[,1]-num_tips), 3], anc2b_hpd[(anc3a_anc2b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[13], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[5,1]*100),"%"))
+  points(anc3a_hpd[(anc3a_anc3b_ix[,1]-num_tips), 3], anc3b_hpd[(anc3a_anc3b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[14], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[6,1]*100),"%"))
+  points(anc3a_hpd[(anc3a_anc4b_ix[,1]-num_tips), 3], anc4b_hpd[(anc3a_anc4b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[15], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[7,1]*100),"%"))
+  points(anc3a_hpd[(anc3a_anc5b_ix[,1]-num_tips), 3], anc5b_hpd[(anc3a_anc5b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  
+  # * GENE
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[16], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  points(anc4a_hpd[(anc4a_anc1b_ix[,1]-num_tips), 3], anc1b_hpd[(anc4a_anc1b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  mtext(labels_1[4], side=2, line=1, adj=0.5, cex=1)
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[17], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[1,1]*100),"%"))
+  points(anc4a_hpd[(anc4a_anc2b_ix[,1]-num_tips), 3], anc2b_hpd[(anc4a_anc2b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[18], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[5,1]*100),"%"))
+  points(anc4a_hpd[(anc4a_anc3b_ix[,1]-num_tips), 3], anc3b_hpd[(anc4a_anc3b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[19], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[6,1]*100),"%"))
+  points(anc4a_hpd[(anc4a_anc4b_ix[,1]-num_tips), 3], anc4b_hpd[(anc4a_anc4b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[20], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[7,1]*100),"%"))
+  points(anc4a_hpd[(anc4a_anc5b_ix[,1]-num_tips), 3], anc5b_hpd[(anc4a_anc5b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  
+  
+  # * ROW 5
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[21], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  points(anc5a_hpd[(anc5a_anc1b_ix[,1]-num_tips), 3], anc1b_hpd[(anc5a_anc1b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  mtext(labels_1[5], side=2, line=1, adj=0.5, cex=1)
+  mtext(labels_2[1], side=2, line=1, adj=0.5, cex=1)
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[22], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[1,1]*100),"%"))
+  points(anc5a_hpd[(anc5a_anc2b_ix[,1]-num_tips), 3], anc2b_hpd[(anc5a_anc2b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  mtext(labels_2[2], side=1, line=1, adj=0.5, cex=1)
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[23], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[5,1]*100),"%"))
+  points(anc5a_hpd[(anc5a_anc3b_ix[,1]-num_tips), 3], anc3b_hpd[(anc5a_anc3b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  mtext(labels_2[3], side=1, line=1, adj=0.5, cex=1)
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[24], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[6,1]*100),"%"))
+  points(anc5a_hpd[(anc5a_anc4b_ix[,1]-num_tips), 3], anc4b_hpd[(anc5a_anc4b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  mtext(labels_2[4], side=1, line=1, adj=0.5, cex=1)
+  
+  plot.new()
+  box(lty=1, col="white")
+  abline(v=seq(0.1,0.9,0.1), col=bg_col[25], lwd=300)
+  abline(a=0, b=1, col="black", lty=3)
+  text(0.08, 1, paste0(as.character(rank_mat[7,1]*100),"%"))
+  points(anc5a_hpd[(anc5a_anc5b_ix[,1]-num_tips), 3], anc5b_hpd[(anc5a_anc5b_ix[,2]-num_tips), 3], pch=19, col="gray22", xlab="", ylab="")
+  mtext(labels_2[5], side=1, line=1, adj=0.5, cex=1)
+  
+  
+  title(main="Divergence Time Comparisons for Shared Nodes\nUnder 5 Partitioning Schemes", sub=study, cex.main=1.5, outer=TRUE)
+}  
