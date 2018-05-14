@@ -3,6 +3,7 @@
 export(addComments)
 export(createAncestry)
 export(csnap)
+export(csnapMulti)
 export(csnapPairs)
 export(csnapWhisker)
 export(matchNodes)

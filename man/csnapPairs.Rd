@@ -4,7 +4,7 @@
 \alias{csnapPairs}
 \title{csnapPairs()}
 \usage{
-csnapPairs(tre_files_path)
+csnapPairs(tre_files_path, study = "")
 }
 \arguments{
 \item{tre_files_path}{A path to where your .tre files (assumes you have AIC, Saturated, BIC, Gene, and Uniform). Future edits will make this generalized.}
