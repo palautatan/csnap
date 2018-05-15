@@ -57,9 +57,28 @@ csnapPairs(path_to_tre_files)
 ```
 <img src="examples/csnapPairs.png">
 
+## 4. csnapMulti()
+This function works particularly different than the other functions. Its parameter input were used to be able to "generalize" csnapPairs() for comparing multiple runs. I will first list my files from te directories I have chosen.
+```{r}
+# LIST FILES
+files_1 = list.files(folder_1, pattern=".tre$", full.names=TRUE)
+files_2 = list.files(folder_2, pattern=".tre$", full.names=TRUE)
+```
+
+
+Then, I will use the same vector of labels for both analyses using ```csnapMulti()```.
+```{r, warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
+labels = c("sat", "aic", "bic", "gen", "uni")
+csnapMulti(files_1, files_2, labels, labels)
+```
+
+<img src="examples/csnapMulti.png">
+
+In the future, I should make this function work for equally lengthed vectors of analyses on the same dataset.
+
 ## The Identity Line
 The line $y=x$, the $1:1$ line, or the identity line is plotted in each of the subplots above. If the shared node ages were inferred to be the same, the points would line up on the identity. The subplots along the diagonal from the top left plot to the bottom right are the only ones that will follow the identity line because they are the same analysis plotted twice. All other plots will deviate from the identity line.
 
 In Compare Tree Plots, the correlation coefficient $R^2$ is used to measure the relationship between the two plots' variables' posterior probabilities. The correlation coefficient is actually quite robust to data that are in Compare Tree Plots and CSNAPs because of a strong cluster of data points that lie close to 0 for both analyses.
 
-Instead of using $R^2$ to make conclusions about the relationships between the inferred data points, use it as a guide, and look carefully at the plots instead.
+Instead of using $R^2$ to make conclusions about the relationships between the inferred data points, use it as a guide, and look carefully at the plots instead. Instead of using $R^2$ to make conclusions about the relationships between the inferred data points, you can use it as a guide, and look carefully at the plots instead. I did not include $R^2$ in my CSNAPs.
