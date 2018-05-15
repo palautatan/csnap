@@ -4,7 +4,7 @@
 \alias{csnapMulti}
 \title{csnapMulti()}
 \usage{
-csnapMulti(tre_files_1, tre_files_2, labels_1, labels_2)
+csnapMulti(tre_files_1, tre_files_2, labels_1, labels_2, study = "")
 }
 \arguments{
 \item{tre_files_1}{A vector of 5 .tre files in comparison order}

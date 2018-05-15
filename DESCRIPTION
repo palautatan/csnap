@@ -3,7 +3,7 @@ Title: Compare Shared Node Age Plots
 Version: 0.0.0.9000
 Authors@R: person("Espejo", "Edie", email = "espejo@berkeley.edu", role = c("aut", "cre"))
 Description: This package contains several functions that make CSNAPs.
-Depends: R (>= 3.4.2)
+Depends: R (>= 3.3.2)
 License: I have a driver's license. Haha.
 Encoding: UTF-8
 LazyData: true

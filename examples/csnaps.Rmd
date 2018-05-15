@@ -30,6 +30,8 @@ When you run this function, you will see several ```is.na()``` warnings, and it 
 
 ```{r, echo=FALSE}
 path_to_tre_files = "/Users/treehouse3/Dropbox/Effect_of_partitioning/step_3_forward/output/RevBayes/Rota_2011_moths"
+folder_1 = "/Users/treehouse3/Dropbox/Effect_of_partitioning/step_3_forward/output/RevBayes/Rota_2011_moths"
+folder_2 = "/Users/treehouse3/Dropbox/Effect_of_partitioning/step_2_shakedown_runs/output/RevBayes/Rota_2011_moths"
 ```
 
 ```{r, warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
@@ -54,6 +56,19 @@ Instead of plotting only the shared nodes amongst all analyses, ```csnapPairs()`
 ```{r, warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
 # CSNAPPAIRS FUNCTION
 csnapPairs(path_to_tre_files)
+```
+
+## 4. csnapMulti()
+This function works particularly different than the other functions. Its parameter input were used to be able to "generalize" csnapPairs() for comparing multiple runs.
+```{r}
+# LIST FILES
+files_1 = list.files(folder_1, pattern=".tre$", full.names=TRUE)
+files_2 = list.files(folder_2, pattern=".tre$", full.names=TRUE)
+```
+
+```{r, warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
+labels = c("1", "2", "3", "4", "5")
+csnapMulti(files_1, files_2, labels, labels)
 ```
 
 ## The Identity Line
