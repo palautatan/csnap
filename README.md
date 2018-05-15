@@ -63,6 +63,3 @@ The line $y=x$, the $1:1$ line, or the identity line is plotted in each of the s
 In Compare Tree Plots, the correlation coefficient $R^2$ is used to measure the relationship between the two plots' variables' posterior probabilities. The correlation coefficient is actually quite robust to data that are in Compare Tree Plots and CSNAPs because of a strong cluster of data points that lie close to 0 for both analyses.
 
 Instead of using $R^2$ to make conclusions about the relationships between the inferred data points, use it as a guide, and look carefully at the plots instead.
-
-## Current Work
-I am working on generalizing the ```csnapPairs()``` function to accept two folders of ```.tre``` files.
